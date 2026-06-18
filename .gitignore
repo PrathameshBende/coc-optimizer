@@ -1,0 +1,11 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data folder
+clash-of-clans-data/
+
+# (Optional) Ignore generated JSON files
+parsed_metadata.json
+village_export.json

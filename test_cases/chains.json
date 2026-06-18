@@ -1,0 +1,8 @@
+{
+    "machines": 1,
+    "tasks": [
+        {"id": "A", "duration": 10, "deps": []},
+        {"id": "B", "duration": 20, "deps": ["A"]},
+        {"id": "C", "duration": 15, "deps": ["B"]}
+    ]
+}

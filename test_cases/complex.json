@@ -1,0 +1,27 @@
+{
+    "machines": 5,
+    "tasks": [
+        { "id": "King75", "duration": 120, "deps": [] },
+        { "id": "King76", "duration": 120, "deps": ["King75"] },
+        { "id": "King77", "duration": 144, "deps": ["King76"] },
+
+        { "id": "Queen75", "duration": 120, "deps": [] },
+        { "id": "Queen76", "duration": 120, "deps": ["Queen75"] },
+        { "id": "Queen77", "duration": 144, "deps": ["Queen76"] },
+
+        { "id": "Lab11", "duration": 168, "deps": [] },
+        { "id": "Lab12", "duration": 192, "deps": ["Lab11"] },
+
+        { "id": "ArmyCamp10", "duration": 96, "deps": [] },
+        { "id": "ArmyCamp11", "duration": 120, "deps": ["ArmyCamp10"] },
+
+        { "id": "ClanCastle9", "duration": 144, "deps": [] },
+        { "id": "ClanCastle10", "duration": 168, "deps": ["ClanCastle9"] },
+
+        { "id": "Cannon19", "duration": 72, "deps": [] },
+        { "id": "Cannon20", "duration": 96, "deps": ["Cannon19"] },
+
+        { "id": "WizardTower14", "duration": 84, "deps": [] },
+        { "id": "WizardTower15", "duration": 108, "deps": ["WizardTower14"] }
+    ]
+}

@@ -24,19 +24,18 @@ class TaskSchedule:
     end_time: int
 
 @dataclass
-class ScheduleResult:
-    makespan: int
-    task_schedules: list[TaskSchedule]
-    tasks: list[Task]
-
-@dataclass
 class NormalizedLevel:
     level: int
     duration_seconds: int
     town_hall_required: Optional[int] = None
-    hero_hall_required: Optional[int] = None  
+    hero_hall_required: Optional[int] = None
     lab_required: Optional[int] = None
     pet_house_required: Optional[int] = None
+    spell_factory_required: Optional[int] = None
+    dark_spell_factory_required: Optional[int] = None
+    workshop_required: Optional[int] = None
+    barracks_required: Optional[int] = None         # NEW
+    dark_barracks_required: Optional[int] = None    # NEW
     supercharge: bool = False
 
 @dataclass

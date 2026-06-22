@@ -41,12 +41,26 @@ optimizer/
 ├── schedule.json            # Generated schedule output (JSON for UI)
 ├── village_export.json      # Example village export
 ├── parsed_metadata.json     # Cached normalized metadata
+├── coc-tracker.tar.gz       # Extension file compressed (GNOME Shell extension)
 └── clash-of-clans-data/     # Game data files (gitignored submodule/checkout)
 ```
 
 ## Installation
 
 Requires Python 3.11+ and OR-Tools.
+
+### Optional: GNOME Shell Extension
+
+The `coc-tracker.tar.gz` file contains a GNOME Shell extension for Clash of Clans tracking. To install:
+
+```bash
+# Extract and install the extension
+tar -xzf coc-tracker.tar.gz
+cd coc-tracker
+./install.sh
+```
+
+This extension provides additional Clash of Clans game data integration and tracking features.
 
 ```bash
 # Clone the repo

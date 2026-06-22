@@ -1,4 +1,4 @@
-# Clash of Clans Upgrade Optimizer
+# Clash of Clans Upgrade Optimizer (Hardcoded paths)
 
 A CP-SAT-based scheduler that computes the **optimal upgrade order** for a Clash of Clans village. Given a village export, the project builds a task graph of all possible upgrades (buildings, lab research, pets), resolves infrastructure dependencies, and solves the resource-constrained project scheduling problem to minimize the total makespan (real-world days to max).
 

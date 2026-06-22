@@ -153,6 +153,32 @@ Machine counts are defined in `run_pipeline.py` and `validate_schedule.py` as a 
 
 Additionally, `scheduler.py:3` has a stale import `from parser import parse_input` — the `parser.py` source file is missing (only `.pyc` bytecode remains), though it was the JSON test-case parser.
 
+## Dealing with Hardcoded Paths
+
+### Python Files
+The following Python files contain hardcoded absolute paths that should be made configurable:
+
+1. **`ui/widget.py`** (lines 18, 19, 20, 21, 143)
+2. **`run_pipeline.py`** (line 93)
+3. **`analyze_limits.py`** (line 108)
+4. **`validate_schedule.py`** (line 130)
+
+**Solution:** Replace hardcoded paths with relative paths or configuration variables:
+- Use `pathlib.Path(__file__).parent` for paths relative to the script location
+- Create a configuration system or environment variables for customizable paths
+- Use `os.path.expanduser("~")` for user-specific paths
+
+### GNOME Shell Extension
+The extension in `coc-tracker.tar.gz` (`extension.js`) contains hardcoded paths (lines 9, 10, 11-12, 190). To fix:
+
+**Solution:** 
+1. Extract the extension: `tar -xzf coc-tracker.tar.gz`
+2. Edit `extension.js` to use relative paths or configurable paths
+3. Re-package: `tar -czf coc-tracker.tar.gz coc-tracker/`
+4. Reinstall the extension
+
+**Recommended approach:** Modify the extension to accept paths as extension settings or use relative paths from the extension's installation directory.
+
 ## Hardcoded Paths in Extension
 
 The GNOME Shell extension in `coc-tracker.tar.gz` also contains hardcoded paths:

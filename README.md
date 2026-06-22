@@ -152,3 +152,16 @@ Machine counts are defined in `run_pipeline.py` and `validate_schedule.py` as a 
 | `validate_schedule.py` | 130 | `/home/zorro/Projects/optimizer/clash-of-clans-data/data/home` |
 
 Additionally, `scheduler.py:3` has a stale import `from parser import parse_input` — the `parser.py` source file is missing (only `.pyc` bytecode remains), though it was the JSON test-case parser.
+
+## Hardcoded Paths in Extension
+
+The GNOME Shell extension in `coc-tracker.tar.gz` also contains hardcoded paths:
+
+| File | Line | Hardcoded Path |
+|------|------|----------------|
+| `extension.js` | 9 | `/home/zorro/Projects/optimizer/schedule.json` |
+| `extension.js` | 10 | `/home/zorro/Projects/optimizer/village_export.json` |
+| `extension.js` | 11-12 | `/home/zorro/Projects/optimizer/run_pipeline.py` |
+| `extension.js` | 190 | `/home/zorro/Projects/optimizer` (working directory) |
+
+These paths are used by the extension to interact with the optimizer's pipeline and data files.

@@ -1,0 +1,11 @@
+{
+    "schedule_file": "schedule.json",
+    "village_file": "village_export.json",
+    "python_path": "/usr/bin/python3",
+    "pipeline_script": "run_pipeline.py",
+    "pipeline_cwd": ".",
+    "resource_order": [
+        "BUILDER 1", "BUILDER 2", "BUILDER 3", "BUILDER 4", "BUILDER 5",
+        "LAB 1", "PET 1"
+    ]
+}

@@ -1,0 +1,9 @@
+{
+  "uuid": "coc-tracker@zorro",
+  "id": "coc-tracker@zorro",
+  "name": "CoC Upgrade Tracker",
+  "description": "Clash of Clans upgrade schedule tracker widget",
+  "version": 1,
+  "shell-version": ["45", "46", "47", "48", "49", "50"],
+  "url": ""
+}

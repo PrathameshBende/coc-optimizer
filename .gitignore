@@ -1,0 +1,28 @@
+# Generated output
+schedule.json
+completed_tasks.json
+parsed_metadata.json
+
+# Runtime state
+state.json
+overrides.json
+pos.json
+
+# Caches
+cache/
+__pycache__/
+*.pyc
+*.pyo
+
+# Game data (large, not part of the source repo)
+clash-of-clans-data/
+
+# Backups
+backups/
+
+# OS/metadata
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~

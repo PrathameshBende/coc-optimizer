@@ -786,17 +786,17 @@ export default class CoCTracker extends Extension {
                 const label = `${task.name} Lv${task.level}  (${task.resource})`;
                 const item = new St.Button({ label, style_class: 'coc-dropdown-item', x_align: Clutter.ActorAlign.START });
                 item.connect('clicked', () => {
-                    this._closeDropdown();
                     const targetCard = this._cards[resource];
                     if (targetCard && targetCard.mode === 'active') {
+                        this._closeDropdown();
                         Main.notify('CoC Tracker',
                             `${resource} is busy — cancel its current upgrade first.`);
                         return;
                     }
-                    // Start a real timer on the resource card this dropdown was
-                    // opened from — lets you override the schedule's original
-                    // resource assignment and use whichever builder is free.
+                    // Start the override timer BEFORE closing dropdown,
+                    // so the rebuild isn't fighting with dropdown destruction.
                     this._onStartForeign(resource, task);
+                    this._closeDropdown();
                 });
                 innerBox.add_child(item);
             }

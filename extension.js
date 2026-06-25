@@ -583,12 +583,22 @@ export default class CoCTracker extends Extension {
                    : 'active';
 
         if (mode !== card.mode) {
-            this._renderCardStructure(card);
-            // Natural timer completion — auto bump level + rerun pipeline,
-            // same as Complete Now, with no manual click required.
-            if (mode === 'done' && currentTask && !this._pipelineRunning) {
-                this._onCompleteNow(card.resource, currentTask);
+            // If transitioning to 'done', always clear the finished task's
+            // state so it doesn't get stuck. If the pipeline is free, also
+            // auto-complete (patch village & rerun).
+            if ((mode === 'done' || mode === 'allDone') && currentTask) {
+                const key = stateKey(card.resource, currentTask.task_id);
+                delete this._state[key];
+                saveState(this._extDir, this._state);
+                this._clearOverride(card.resource, currentTask);
+
+                if (mode === 'done' && !this._pipelineRunning) {
+                    // Let _onCompleteNow handle this — it will start the
+                    // pipeline and the callback will call _loadSchedule.
+                    this._onCompleteNow(card.resource, currentTask);
+                }
             }
+            this._renderCardStructure(card);
             return;
         }
 

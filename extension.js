@@ -456,12 +456,28 @@ export default class CoCTracker extends Extension {
 
         } else if (mode === 'done') {
             card.root.style_class = 'coc-card coc-card-idle';
-            const doneLbl = new St.Label({ text: '✓ Finished — collect & start next', style_class: 'coc-done-label' });
-            content.add_child(doneLbl);
 
-            const completeBtn = new St.Button({ label: '… Other', style_class: 'coc-btn-complete' });
-            completeBtn.connect('clicked', () => this._onCompleteOther(resource, completeBtn));
-            content.add_child(completeBtn);
+            if (nextTask) {
+                const nextLbl = new St.Label({
+                    text: `✓ Done — next: ${nextTask.name}  →  Lv ${nextTask.level}`,
+                    style_class: 'coc-done-label'
+                });
+                content.add_child(nextLbl);
+
+                const btnRow = new St.BoxLayout({ vertical: false, style: 'spacing:6px;margin-top:3px;' });
+                const startBtn = new St.Button({ label: '▶ Start', style_class: 'coc-btn-start' });
+                startBtn.connect('clicked', () => this._onStart(resource, nextTask));
+                btnRow.add_child(startBtn);
+
+                const otherBtn = new St.Button({ label: '… Other', style_class: 'coc-btn-complete' });
+                otherBtn.connect('clicked', () => this._onCompleteOther(resource, otherBtn));
+                btnRow.add_child(otherBtn);
+
+                content.add_child(btnRow);
+            } else {
+                const doneLbl = new St.Label({ text: 'All done ✓', style_class: 'coc-done-label' });
+                content.add_child(doneLbl);
+            }
 
         } else {
             // active
@@ -772,9 +788,9 @@ export default class CoCTracker extends Extension {
                 item.connect('clicked', () => {
                     this._closeDropdown();
                     const targetCard = this._cards[resource];
-                    if (targetCard && (targetCard.mode === 'active' || targetCard.mode === 'done')) {
+                    if (targetCard && targetCard.mode === 'active') {
                         Main.notify('CoC Tracker',
-                            `${resource} is already busy — cancel its current upgrade first.`);
+                            `${resource} is busy — cancel its current upgrade first.`);
                         return;
                     }
                     // Start a real timer on the resource card this dropdown was
